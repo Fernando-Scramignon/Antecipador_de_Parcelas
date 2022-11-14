@@ -24,9 +24,12 @@ export function CalculatorInput({ title, aditionalInfo, inputType = "text", min,
             />
     }
 
+    function handleSubmit(event) {
+        event.preventDefault();
+    }
 
     return (
-        <Container>
+        <Container onSubmit={handleSubmit}>
             <h3 className="calculator-main-container__input--title">{title}</h3>
             {input}
             {
