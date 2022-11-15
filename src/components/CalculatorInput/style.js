@@ -24,4 +24,15 @@ export const Container = styled.form`
         color: var(--grey-1);
         font-size: 0.8rem;
     }
+
+    @media (min-width: 1024px) {
+    .calculator-main-container__input--title {
+        color: var(--grey-2);
+        font-size: 1.2rem;
+    }
+
+    .calculator-main-container__input--field {
+        height: 32px;
+    }
+    }
 `

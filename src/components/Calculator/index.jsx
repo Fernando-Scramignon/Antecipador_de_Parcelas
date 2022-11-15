@@ -24,6 +24,7 @@ export function Calculator() {
                     className="calculator-main-container__input"
                     title={"Informe o percentual de mdr *"}
                     inputType={"number"}
+                    min={0}
                 />
 
             </div>
