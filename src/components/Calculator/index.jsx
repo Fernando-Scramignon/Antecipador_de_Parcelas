@@ -11,6 +11,7 @@ export function Calculator() {
                 <CalculatorInput
                     className="calculator-main-container__input"
                     title={"Informe o valor da venda *"}
+                    inputType={"money"}
                 />
                 <CalculatorInput
                     className="calculator-main-container__input"
@@ -32,10 +33,10 @@ export function Calculator() {
             <div className="calculator-result">
                 <h2 className="calculator-result__title">VOCÊ RECEBERÁ: </h2>
                 <hr className="calculator-result__hr" />
-                <p className="calculator-result__results">Amanhã: <b>$0,00</b></p>
-                <p className="calculator-result__results">Em 15 dias: <b>$0,00</b></p>
-                <p className="calculator-result__results">Em 30 dias: <b>$0,00</b></p>
-                <p className="calculator-result__results">Em 90 dias: <b>$0,00</b></p>
+                <p className="calculator-result__results">Amanhã: <b>R$0,00</b></p>
+                <p className="calculator-result__results">Em 15 dias: <b>R$0,00</b></p>
+                <p className="calculator-result__results">Em 30 dias: <b>R$0,00</b></p>
+                <p className="calculator-result__results">Em 90 dias: <b>R$0,00</b></p>
             </div>
         </Container>
     )
