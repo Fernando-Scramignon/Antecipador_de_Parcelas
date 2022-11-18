@@ -16,5 +16,6 @@ export const GlobalStyle = createGlobalStyle`
 
 input {
     outline: none;
+    color: var(--grey-2)
 }
 `
