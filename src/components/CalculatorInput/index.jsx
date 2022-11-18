@@ -1,12 +1,16 @@
 import { Container } from "./style";
+import CurrencyInput from "react-currency-input-field";
 
-export function CalculatorInput({ title, aditionalInfo, inputType = "text", min, max }) {
+
+export function CalculatorInput({ title, aditionalInfo, inputType = "number", min, max }) {
     let input
     switch (inputType) {
-        case ("text"):
-            input = <input
-                type={inputType}
+        case ("money"):
+            input = <CurrencyInput
                 className="calculator-main-container__input--field"
+                decimalsLimit={2}
+                intlConfig={{ locale: "pt-BR", currency: "BRL" }}
+                required
             />
             break;
         case ("number"):
@@ -15,17 +19,22 @@ export function CalculatorInput({ title, aditionalInfo, inputType = "text", min,
                 className="calculator-main-container__input--field"
                 min={min}
                 max={max}
+                required
             />
             break;
         default:
             input = <input
-                type={"text"}
+                type={"number"}
                 className="calculator-main-container__input--field"
+                required
+                min={min}
+                max={max}
             />
     }
 
     function handleSubmit(event) {
         event.preventDefault();
+        console.log("submited")
     }
 
     return (
