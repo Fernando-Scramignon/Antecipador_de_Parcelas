@@ -2,7 +2,7 @@ import { Container } from "./style";
 import CurrencyInput from "react-currency-input-field";
 
 
-export function CalculatorInput({ title, aditionalInfo, inputType = "number", min, max }) {
+export function CalculatorInput({ title, aditionalInfo, inputType = "number", min = 0, max, placeholder, isRequired = true }) {
     let input
     switch (inputType) {
         case ("money"):
@@ -10,7 +10,8 @@ export function CalculatorInput({ title, aditionalInfo, inputType = "number", mi
                 className="calculator-main-container__input--field"
                 decimalsLimit={2}
                 intlConfig={{ locale: "pt-BR", currency: "BRL" }}
-                required
+                required={isRequired}
+                maxLength={9}
             />
             break;
         case ("number"):
@@ -19,26 +20,23 @@ export function CalculatorInput({ title, aditionalInfo, inputType = "number", mi
                 className="calculator-main-container__input--field"
                 min={min}
                 max={max}
-                required
+                required={isRequired}
+                placeholder={placeholder}
             />
             break;
         default:
             input = <input
                 type={"number"}
                 className="calculator-main-container__input--field"
-                required
+                required={isRequired}
                 min={min}
                 max={max}
             />
     }
 
-    function handleSubmit(event) {
-        event.preventDefault();
-        console.log("submited")
-    }
 
     return (
-        <Container onSubmit={handleSubmit}>
+        <Container>
             <h3 className="calculator-main-container__input--title">{title}</h3>
             {input}
             {
