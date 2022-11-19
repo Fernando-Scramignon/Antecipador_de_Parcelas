@@ -22,13 +22,33 @@ to {
     transform: translateY(0px);
 }
 `
+export const CalculatorSubmitButton = styled.input`
+    color: var(--blue-0);
+    background: none;
 
+    width: 15%;
+    min-width: 53px;
+    
+    border: none;
+    border-radius: 5px;
+    padding: 2px;
+
+    font-size: 0.8rem;
+
+    &:hover {
+        color: var(--blue-1);
+        cursor: pointer;
+        text-decoration: underline;
+        transition: 0.3s;
+    }
+
+    @media (min-width: 1024px) {
+        font-size: 1.1rem;
+    }
+`
 
 export const Container = styled.div`
     & {
-        /* animation */
-        /* animation: ${appearFromBottom} 1.3s; */
-
         /* color */
         background: white;
         box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.1);
@@ -69,13 +89,15 @@ export const Container = styled.div`
             text-align: center;
             margin-bottom: 0.5rem;
         }
-        
+
     }
     
     .calculator-result {
         animation: ${appearFromTop} 1s;
 
         background: var(--grey-0);
+
+        border-radius: 10px;
         height: 45%;
 
         display: flex;
@@ -137,3 +159,40 @@ export const Container = styled.div`
     }
     
     `
+
+export const ConfigButton = styled.button`
+    height: 25px;
+    width: 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    background: var(--blue-0);
+    color: var(--grey-0);
+
+    /* padding: 2px; */
+    margin-right: 15px;
+    border: none;
+    border-radius: 3px;
+
+    align-self: flex-end;
+    &:hover {
+        cursor: pointer;
+        background: var(--blue-1);
+        transition: 0.3s;
+    }
+    
+    @media (min-width: 1024px) {
+        /* padding: 2px 8px; */
+
+        position: relative;
+        top: 130px;
+    }
+    
+`
+
+export const CalculatorDays = styled.div`
+
+`
