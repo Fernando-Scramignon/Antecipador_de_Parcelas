@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <ToastContainer limit={1} />
+      <ToastContainer limit={1} autoClose={2500} />
       <Home />
     </>
   );
