@@ -1,5 +1,5 @@
 # Antecipador_de_Parcelas
-Calculadora de antecipação
+Projeto que permite calcular quanto será recebido na antecipação de parcelas. Ele utiliza react, axios e styled components. API utilizada para fazer os cálculos: https://github.com/hashlab/hiring
 
 ## deploy link
 [Antecipador de Parcelas](https://antecipador-de-parcelas.vercel.app)
