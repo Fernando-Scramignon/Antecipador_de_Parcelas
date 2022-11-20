@@ -41,6 +41,10 @@ export const CalculatorSubmitButton = styled.input`
         text-decoration: underline;
         transition: 0.3s;
     }
+    &:disabled {
+        color: var(--grey-1);
+        cursor: not-allowed;
+    }
 
     @media (min-width: 1024px) {
         font-size: 1.1rem;

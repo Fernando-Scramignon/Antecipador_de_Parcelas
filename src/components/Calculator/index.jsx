@@ -1,8 +1,11 @@
 import { Container, CalculatorSubmitButton, ConfigButton } from "./style";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import axios from "axios";
 import { BiCog } from "react-icons/bi"
+
+import { toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css";
 
 // components
 import { CalculatorInput } from "../CalculatorInput";
@@ -22,7 +25,56 @@ export function Calculator() {
         setValues(newValues)
     }, [, days])
 
-    function handleSubmit(event) {
+    async function axiosRequest(amount, installments, mdr, days, button) {
+        console.log(days)
+
+        const base_url = "https://frontend-challenge-7bu3nxh76a-uc.a.run.app"
+        await toast.promise(
+
+            axios.post(
+                base_url, {
+                amount: amount,
+                installments: installments,
+                mdr: mdr,
+                days
+            }
+            )
+                .then(function (response) {
+                    const { data } = response
+                    const newValues = Object.values(data)
+                    setValues(newValues)
+                }
+                ),
+            {
+                pending: {
+                    render() {
+                        return "Carregando"
+                    },
+                    onOpen: () => button.disabled = true
+                },
+                success: {
+                    render() {
+                        return "Requisição feita com sucesso"
+                    },
+                    onOpen: () => button.disabled = true,
+                    onClose: () => button.disabled = false
+                },
+                error: {
+                    render({ data }) {
+                        const errorMessages = {
+                            "Internal Server Error": "Erro interno do servidor",
+                            "Timeout": "Conexão expirou"
+                        }
+                        return errorMessages[data?.response?.data?.message || "algo deu errado"]
+                    },
+                    onClose: () => button.disabled = false
+                }
+            }
+
+        )
+    }
+
+    async function handleSubmit(event) {
         event.preventDefault();
 
         const amount = parseInt(event.target.children[1].children[1].value
@@ -30,30 +82,9 @@ export function Calculator() {
         const installments = event.target.children[2].children[1].value
         const mdr = event.target.children[3].children[1].value
 
-
-        const base_url = "https://frontend-challenge-7bu3nxh76a-uc.a.run.app/"
-
-
-
-        axios.post(
-            base_url, {
-            amount: amount,
-            installments: installments,
-            mdr: mdr,
-            days
-        }
-        )
-            .then(function (response) {
-                const { data } = response
-                const newValues = Object.values(data)
-                setValues(newValues)
-                console.log(newValues)
-            }
-            )
-            .catch(function (error) {
-                console.error(error)
-            }
-            )
+        const button = event.target.children[4]
+        await axiosRequest(amount, installments, mdr, days, button)
+        toast.clearWaitingQueue()
 
     }
 
@@ -68,7 +99,7 @@ export function Calculator() {
     return (
         <>
             {isConfigOpen && <CalculatorConfiguration days={days} setDays={setDays} alternateConfigModal={alternateConfigModal} />}
-            <Container onClick={() => console.log(values)} >
+            <Container  >
                 <form className="calculator-main-container" onSubmit={handleSubmit}>
                     <h2 onClick={onClickDebug} className="calculator-main-container__title">Simule sua Antecipação</h2>
                     <CalculatorInput
