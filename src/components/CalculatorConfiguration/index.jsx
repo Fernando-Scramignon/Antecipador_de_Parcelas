@@ -12,7 +12,7 @@ export function CalculatorConfiguration({ days, setDays, alternateConfigModal })
         const inputsArr = document.getElementById("config-modal-inputs").children
         for (let i = 0; i < inputsArr.length; i++) {
             const value = inputsArr[i].children[1].value
-            if (value) {
+            if (value && !inputsValues.find(input => input === parseInt(value))) {
                 inputsValues[i] = parseInt(value)
             }
         }
@@ -34,8 +34,8 @@ export function CalculatorConfiguration({ days, setDays, alternateConfigModal })
                         placeholder={"Escolha um dia"}
                         isRequired={false}
                     />)}
-
                 </div>
+                <span className="configuration-modal__info">Os dias não podem ser repetidos</span>
 
                 <h3 className="configuration-modal__extra-title">Configurações extras</h3>
                 <div className="configuration-modal__radio-input">

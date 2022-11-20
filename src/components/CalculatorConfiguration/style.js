@@ -90,6 +90,10 @@ export const Modal = styled.form`
         gap: 0.5rem;
         width: 100%;
     }
+    .configuration-modal__info {
+        font-size: 0.8rem;
+        color: var(--grey-1);
+    }
 
     .configuration-modal__extra-title {
         color: var(--grey-2);
