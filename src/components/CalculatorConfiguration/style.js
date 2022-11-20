@@ -97,12 +97,16 @@ export const Modal = styled.form`
 
     .configuration-modal__extra-title {
         color: var(--grey-2);
-        margin-top: 1rem;
+        margin-top: 0.2rem;
     }
     .configuration-modal__radio-input {
         width: 100%;
         display: flex;
         justify-content: space-around;
+    }
+
+    @media (min-width: 1024px) {
+        height: 450px;
     }
 
 `

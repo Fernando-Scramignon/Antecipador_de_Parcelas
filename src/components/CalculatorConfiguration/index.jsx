@@ -4,10 +4,11 @@ import { ConfigRadioInput } from "../ConfigRadioInput"
 
 import { AiOutlineClose } from "react-icons/ai"
 
-export function CalculatorConfiguration({ days, setDays, alternateConfigModal }) {
+export function CalculatorConfiguration({ days, setDays, alternateConfigModal, requestParams, setRequestParams }) {
     function handleSubmit(event) {
         event.preventDefault()
 
+        // gets input values
         let inputsValues = [...days]
         const inputsArr = document.getElementById("config-modal-inputs").children
         for (let i = 0; i < inputsArr.length; i++) {
@@ -16,6 +17,24 @@ export function CalculatorConfiguration({ days, setDays, alternateConfigModal })
                 inputsValues[i] = parseInt(value)
             }
         }
+
+        let newRequestParams = {}
+
+        // gets radio input value
+        let radioInputSelectedOption = document.querySelector('input[name="config-radio-input"]:checked').value.toLowerCase()
+        if (radioInputSelectedOption === "server error") radioInputSelectedOption = "internalError"
+        if (radioInputSelectedOption && radioInputSelectedOption !== "Nenhum") {
+            newRequestParams[radioInputSelectedOption] = true
+        }
+
+        // gets request delay input
+        let responseDelay = event.target.children[5].children[1].value
+        if (responseDelay) {
+            newRequestParams["delay"] = parseInt(responseDelay)
+        }
+
+
+        setRequestParams(newRequestParams)
         setDays(inputsValues)
         alternateConfigModal()
     }
@@ -39,10 +58,18 @@ export function CalculatorConfiguration({ days, setDays, alternateConfigModal })
 
                 <h3 className="configuration-modal__extra-title">Configurações extras</h3>
                 <div className="configuration-modal__radio-input">
+                    <ConfigRadioInput nameType="Nenhum" defaultChecked />
                     <ConfigRadioInput nameType="Timeout" />
                     <ConfigRadioInput nameType="Server Error" />
                 </div>
-                <CalculatorInput isRequired={false} aditionalInfo={"Atraso de resposta"} placeholder={"milisegundos"} inputType={"number"} />
+                <CalculatorInput
+                    id="delay-input"
+                    title={"Atraso de resposta"}
+                    isRequired={false}
+                    aditionalInfo={"Atraso de resposta"}
+                    placeholder={"milisegundos"}
+                    inputType={"number"}
+                />
                 <SaveConfigButton type={"submit"} value="Salvar" />
             </Modal>
         </Container>

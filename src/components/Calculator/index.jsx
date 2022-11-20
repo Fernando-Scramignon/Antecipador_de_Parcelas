@@ -1,5 +1,5 @@
 import { Container, CalculatorSubmitButton, ConfigButton } from "./style";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 import axios from "axios";
 import { BiCog } from "react-icons/bi"
@@ -18,6 +18,7 @@ export function Calculator() {
 
     const [days, setDays] = useState([1, 15, 30, 90])
     const [values, setValues] = useState([])
+    const [requestParams, setRequestParams] = useState({})
 
 
     useEffect(() => {
@@ -26,17 +27,19 @@ export function Calculator() {
     }, [, days])
 
     async function axiosRequest(amount, installments, mdr, days, button) {
-        console.log(days)
 
         const base_url = "https://frontend-challenge-7bu3nxh76a-uc.a.run.app"
         await toast.promise(
 
             axios.post(
-                base_url, {
-                amount: amount,
-                installments: installments,
-                mdr: mdr,
-                days
+                base_url,
+                {
+                    amount: amount,
+                    installments: installments,
+                    mdr: mdr,
+                    days
+                }, {
+                params: requestParams
             }
             )
                 .then(function (response) {
@@ -98,7 +101,13 @@ export function Calculator() {
 
     return (
         <>
-            {isConfigOpen && <CalculatorConfiguration days={days} setDays={setDays} alternateConfigModal={alternateConfigModal} />}
+            {isConfigOpen && <CalculatorConfiguration
+                days={days}
+                setDays={setDays}
+                alternateConfigModal={alternateConfigModal}
+                requestParams={requestParams}
+                setRequestParams={setRequestParams}
+            />}
             <Container  >
                 <form className="calculator-main-container" onSubmit={handleSubmit}>
                     <h2 onClick={onClickDebug} className="calculator-main-container__title">Simule sua Antecipação</h2>
