@@ -9,6 +9,7 @@ export const Container = styled.div`
 
     .calculator-main-container__input--title {
         color: var(--grey-2);
+        margin-left: 8px;
         font-size: 1rem;
     }
 
