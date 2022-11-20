@@ -24,6 +24,7 @@ export function Calculator() {
     useEffect(() => {
         const newValues = days.map((day) => 0)
         setValues(newValues)
+        //eslint-disable-next-line
     }, [, days])
 
     async function axiosRequest(amount, installments, mdr, days, button) {
