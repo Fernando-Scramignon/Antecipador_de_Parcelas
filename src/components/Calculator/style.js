@@ -60,7 +60,7 @@ export const Container = styled.div`
         /* size */
         height: 550px;
         width: 65%;
-        min-width: 250px;
+        min-width: 280px;
         max-width: 650px;
 
         /* border */
@@ -89,7 +89,7 @@ export const Container = styled.div`
         
         .calculator-main-container__title {
             color: var(--grey-2);
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             text-align: center;
             margin-bottom: 0.5rem;
         }
